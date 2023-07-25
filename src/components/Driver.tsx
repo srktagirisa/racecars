@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useCallback } from 'react';
 
 interface DriverProps {
-  name: string;
+  driverData: {name: string, crossedFinishLine : boolean};
   raceStarted: boolean;
 }
 
-const Driver: React.FC<DriverProps> = ({ name, raceStarted }) => {
+const Driver: React.FC<DriverProps> = ({ driverData, raceStarted }) => {
   const [seconds, setSeconds] = useState(0);
 
   // Callback function to increment seconds
@@ -44,9 +44,10 @@ const Driver: React.FC<DriverProps> = ({ name, raceStarted }) => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <li>
-        <b>{name}</b><br></br>
+        <b>{driverData.name}</b><br></br>
          {formatTime(seconds)}
       </li>
+      
     </div>
   );
 };
