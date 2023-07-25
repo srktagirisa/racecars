@@ -1,26 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Header from './components/Header';
+import Scoreboard from './components/Scoreboard';
 
-function App() {
+const App: React.FC = () => {
+  const [showScoreboard, setShowScoreboard] = useState(false);
+
+  const handleHideScoreboard = () => {
+    setShowScoreboard(false);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <Header raceTitle="Le Circus 500" />
+      {showScoreboard ? (
+        <Scoreboard showScoreboard={showScoreboard} onHideScoreboard={handleHideScoreboard} />
+      ) : (
+        <button onClick={() => setShowScoreboard(true)}>Show Scoreboard</button>
+      )}
     </div>
   );
-}
+};
 
 export default App;
